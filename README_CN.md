@@ -30,7 +30,7 @@
 
 
 <p align="center">
-  <img src="images/principle.png" width="800">
+  <img src="images/逻辑图中文.png" width="800">
 </p>
 
 

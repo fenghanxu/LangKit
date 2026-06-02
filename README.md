@@ -35,7 +35,7 @@ Although online localization provides the ability to update translation content 
 The workflow is conceptually similar to SDWebImage.
 
 <p align="center">
-  <img src="images/principle.png" width="800">
+  <img src="images/逻辑图英文.png" width="800">
 </p>
 
 
@@ -86,7 +86,7 @@ In short, LangKit follows this strategy:
 # 📸 Preview
 
 <p align="center">
-  <img src="images/cn.png" width="800">
+  <img src="images/en.png" width="800">
 </p>
 
 
