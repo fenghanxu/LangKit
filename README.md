@@ -1,28 +1,38 @@
 # LangKit
-# ✨ Explanation — 说明
 
-支持国际化(多语言)线上第三方
+[中文文档](README_CN.md)
 
-某些公司希望App支持的多语言文件放到线上,通过下载多语言文件的方式或者通过接口请求json数据回来,进行多语言显示的方式,解决多语言的问题.
+[英文文档](README.md)
 
-## 线上多语言方向的优劣
+## ✨ Explanation
 
-能解决的问题
+LangKit is an online localization (multi-language) solution for iOS applications.
 
-1.如果字段的内容是由不同不部门或者受到区域限制的问题,可能放到线上,其他人修改比较方便
-2.如果发现内容有问题,需要及时更改及时使用,需要等待审核这段时间.
+In some projects, localization files are not bundled entirely within the app. Instead, language resources can be hosted on a remote server and downloaded dynamically, or fetched through an API that returns JSON data. This approach allows applications to update translations without releasing a new version of the app.
 
-不能解决的问题
+------
 
-另外.其实多语言弄到线上去,最大的一个帮助就是,更新内容的时候,直接可以热更新,不需要重新提交审核,其实并不能完全很好的解决全部问题,
-1.主要是app有新的页面(功能)开发,就需要有新增的字段,也是需要重新提交审核.(只能解决原有的字段内容更新)
-2.如果从线上下载多语言的字段,为了防止下载失败,通常都会在项目放入一份多语言的json文件进行备份.而且要跟线上的保持一致.如果是这样的话,线上的那份就多此一举了.本地本身有一份跟线上的一模一样,就没有必要从网上拿,如果本地不备份存在安全隐患,万一接口访问失败,整个app有很大的影响
+## Pros and Cons of Online Localization
 
-# ⚙️ How It Works -- 工作原理
+### Advantages
 
-原理类似于SDWebimage
+Online localization can help solve the following problems:
 
+1. Translation content can be managed by different teams or departments without requiring a new app release.
+2. If a translation contains mistakes or outdated content, it can be updated immediately without waiting for App Store review approval.
 
+### Limitations
+
+Although online localization provides the ability to update translation content remotely, it does not solve every localization-related issue.
+
+1. When new pages or features are added to the application, new localization keys are usually required. These changes still require a new app release and App Store review.
+2. To avoid issues caused by network failures, most applications keep a local backup of the localization files. This backup should remain synchronized with the server version. In practice, this means the app already contains a complete set of localization resources, making the remote copy partially redundant. Without a local backup, failed downloads or API outages could significantly impact the user experience.
+
+------
+
+# ⚙️ How It Works
+
+The workflow is conceptually similar to SDWebImage.
 
 <p align="center">
   <img src="images/principle.png" width="800">
@@ -30,90 +40,149 @@
 
 
 
-1.程序启动：系统启动时，首先进行初始化操作。
-2.检查沙盒中的多语言文件：系统判断沙盒（应用的本地存储空间）中是否已经存在多语言文件。
-- 如果存在：
-  - 直接加载沙盒中的多语言文件到缓存中，为后续调用做准备。
-- 如果不存在：
-  - 系统加载本地的备份多语言文件。
-  - 将备份文件的数据保存到沙盒中。
-  - 然后将这些多语言文件加载到缓存中。
+### Startup Process
 
-3.更新多语言文件：无论是从沙盒直接加载，还是通过备份文件加载，系统都会向多语言接口请求最新的多语言文件，并将更新后的数据写入沙盒中。
-4.使用多语言文件：系统根据多语言文件的内容，通过 API 加载对应的文本字段，实现多语言显示。
-5.完成初始化：所有多语言文件加载和更新完成后，系统进入正常运行状态。
+1. **Application Launch**
 
+   When the application starts, LangKit performs its initialization process.
 
+2. **Check Localization Files in the Sandbox**
 
----------------------------
+   LangKit checks whether localization files already exist in the application's sandbox storage.
 
+   - If localization files exist:
+     - Load the files directly from the sandbox into memory cache.
+   - If localization files do not exist:
+     - Load the bundled backup localization files.
+     - Save the backup files to the sandbox.
+     - Load the localization data into memory cache.
 
+3. **Update Localization Files**
 
-简而言之，这个逻辑确保了应用启动时：
+   Regardless of whether the data comes from the sandbox or the bundled backup, LangKit requests the latest localization files from the server and updates the sandbox storage.
 
-- 优先使用沙盒中已有的多语言文件以加快启动速度；
-- 若没有，则使用本地备份文件初始化；
-- 然后再请求最新的多语言数据更新沙盒；
-- 最终通过缓存和 API 提供多语言显示功能。
+4. **Provide Localized Strings**
 
+   The application retrieves localized text through LangKit APIs based on the selected language and localization keys.
 
+5. **Initialization Complete**
 
+   Once localization data has been loaded and updated, the application continues normal operation.
 
-# 📸 Preview — 预览
+------
+
+### Summary
+
+In short, LangKit follows this strategy:
+
+- Use existing sandbox files whenever possible for faster startup.
+- Fall back to bundled backup files if sandbox files are unavailable.
+- Fetch the latest translations from the server in the background.
+- Store updated translations locally.
+- Provide localized strings through a simple API interface.
+
+------
+
+# 📸 Preview
 
 <p align="center">
   <img src="images/cn.png" width="800">
 </p>
 
 
-# 📦 Installation -- 安装
 
-```ruby
+------
+
+# 📦 Installation
+
+```
 pod 'LangKit'
+
 ```
 
-# 🚀 Usage — 使用
+------
 
-直接下载Demol,Demol包含使用方法和第三方的代码，可以直接运行
+# 🚀 Usage
+
+Download the Demo project included in this repository. It contains complete examples and source code demonstrating how to integrate and use LangKit.
 
 <p align="center">
   <img src="images/ForExample.png" width="1200">
 </p>
 
- 下面是开发中使用到的常用方法，使用下面这些方法，就能满足需求
 
-1.判断沙盒是否存在中文文件，如果没有读取回来的数据是空
 
-```ruby
- if (![LangKit localizationDictionaryForTable:@"en"]) {}
+The following APIs cover most common localization scenarios.
+
+### 1. Check Whether a Localization File Exists
+
+Returns an empty result if the specified language file does not exist.
+
 ```
-
-2.读取项目本地备份导入的中文文件
-
-```ruby
-NSData *enData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"en" ofType:@"json"]];
-NSDictionary *enJson = [NSJSONSerialization JSONObjectWithData:enData options:NSJSONReadingMutableContainers error:nil];
-[LangKit setMainLocalizationDictionary:enJson table:@"en" update:NO storeOnDisk:YES];
-```
-
-3.使用公司提供的URL地址，下载语言文档，保存在到沙盒中
-
-```ruby
-NSURL *url = [NSURL URLWithString:@"https://myserver.com/translations.json"];
-[LangKit downloadLocalizationDictionaryWithURL:url table:nil];
-```
-4.链接中的json文件要求是下面的格式
-
-```ruby
-{
-  "greeting": "近日，记者就此事询问了12306平台及第三方购票平台，证实类似情况确有可能发生。",
-  "message": "乘客发现后，需及时与铁路部门、第三方平台沟通处理。"
+if (![LangKit localizationDictionaryForTable:@"en"]) {
+    
 }
+
 ```
 
-字段Api,一个是字段参数，另一个是选择语言
-```ruby
-[LangKit stringFor:@"greeting" table:@"en"]
+------
+
+### 2. Load a Local Backup Localization File
+
+```
+NSData *enData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"en" ofType:@"json"]];
+
+NSDictionary *enJson = [NSJSONSerialization JSONObjectWithData:enData
+                                                       options:NSJSONReadingMutableContainers
+                                                         error:nil];
+
+[LangKit setMainLocalizationDictionary:enJson
+                                 table:@"en"
+                                update:NO
+                           storeOnDisk:YES];
+
 ```
 
+------
 
+### 3. Download Localization Files from a Remote Server
+
+```
+NSURL *url = [NSURL URLWithString:@"https://myserver.com/translations.json"];
+
+[LangKit downloadLocalizationDictionaryWithURL:url table:nil];
+
+```
+
+------
+
+### 4. JSON Format Requirements
+
+The downloaded localization file should follow this format:
+
+```
+{
+  "greeting": "Recently, reporters contacted the 12306 platform and third-party ticketing platforms, confirming that such situations may indeed occur.",
+  "message": "Passengers should promptly communicate with railway authorities and third-party platforms for assistance."
+}
+
+```
+
+------
+
+### 5. Retrieve a Localized String
+
+The first parameter is the localization key, and the second parameter specifies the language table.
+
+```
+[LangKit stringFor:@"greeting" table:@"en"];
+
+```
+
+------
+
+
+
+[中文文档](README_CN.md)
+
+[英文文档](README.md)
