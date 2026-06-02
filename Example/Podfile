@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'LangKit_Example' do
+  pod 'LangKit', :path => '../'
+
+  target 'LangKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

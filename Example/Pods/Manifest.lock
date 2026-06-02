@@ -1,0 +1,16 @@
+PODS:
+  - LangKit (0.1.0)
+
+DEPENDENCIES:
+  - LangKit (from `../`)
+
+EXTERNAL SOURCES:
+  LangKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LangKit: c32b81fc234a7d7c7d2a3a2557f2e7db4e8e783f
+
+PODFILE CHECKSUM: 0ac534e479b6496fa7bb3a983a2303b23504b0e7
+
+COCOAPODS: 1.16.2
