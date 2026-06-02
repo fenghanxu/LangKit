@@ -7,6 +7,7 @@
 //
 
 #import "FHXAppDelegate.h"
+#import "FHXViewController.h"
 #import "LangKit.h"
 
 @implementation FHXAppDelegate
@@ -15,6 +16,9 @@
 {
     // Override point for customization after application launch.
     [self language];
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[FHXViewController new]];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

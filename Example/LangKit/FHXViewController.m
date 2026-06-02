@@ -42,11 +42,13 @@
 
     [self.getButton setTitle:[LangKit stringFor:@"greeting" table:@"en"]
                     forState:UIControlStateNormal];
-    [self.getButton setTitleColor:[UIColor blueColor]
+    [self.getButton setTitleColor:[UIColor grayColor]
                          forState:UIControlStateNormal];
-    self.getButton.backgroundColor = [UIColor orangeColor];
     self.getButton.titleLabel.font = [UIFont systemFontOfSize:14];
-
+    self.getButton.layer.cornerRadius = 8.0;
+    self.getButton.layer.borderWidth = 2;
+    self.getButton.layer.borderColor = [UIColor grayColor].CGColor;
+    
     [self.getButton addTarget:self
                        action:@selector(getButtonClick)
              forControlEvents:UIControlEventTouchUpInside];
@@ -54,7 +56,7 @@
     self.getButton.translatesAutoresizingMaskIntoConstraints = NO;
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.getButton.widthAnchor constraintEqualToConstant:100],
+        [self.getButton.widthAnchor constraintEqualToConstant:150],
         [self.getButton.heightAnchor constraintEqualToConstant:100],
         [self.getButton.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:60],
         [self.getButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor]
@@ -65,12 +67,14 @@
     self.clearnButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.view addSubview:self.clearnButton];
 
-    [self.clearnButton setTitle:@"clearnButton"
+    [self.clearnButton setTitle:@"Push HomeVC"
                        forState:UIControlStateNormal];
-    [self.clearnButton setTitleColor:[UIColor blueColor]
+    [self.clearnButton setTitleColor:[UIColor grayColor]
                             forState:UIControlStateNormal];
-    self.clearnButton.backgroundColor = [UIColor orangeColor];
     self.clearnButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    self.clearnButton.layer.cornerRadius = 8.0;
+    self.clearnButton.layer.borderWidth = 2;
+    self.clearnButton.layer.borderColor = [UIColor grayColor].CGColor;
 
     [self.clearnButton addTarget:self
                           action:@selector(clearnButtonClick)
@@ -79,7 +83,7 @@
     self.clearnButton.translatesAutoresizingMaskIntoConstraints = NO;
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.clearnButton.widthAnchor constraintEqualToConstant:100],
+        [self.clearnButton.widthAnchor constraintEqualToConstant:150],
         [self.clearnButton.heightAnchor constraintEqualToConstant:100],
         [self.clearnButton.topAnchor constraintEqualToAnchor:self.getButton.bottomAnchor constant:20],
         [self.clearnButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor]

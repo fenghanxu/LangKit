@@ -21,7 +21,6 @@
     self.titleLabel = [UILabel new];
     [self.view addSubview:self.titleLabel];
     self.titleLabel.textColor = [UIColor blackColor];
-    [self.view addSubview:self.view];
     self.titleLabel.font = [UIFont systemFontOfSize:14];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
