@@ -4,7 +4,7 @@
 
 [英文文档](README.md)
 
-## ✨ Explanation
+## Explanation
 
 LangKit is an online localization (multi-language) solution for iOS applications.
 
@@ -30,7 +30,7 @@ Although online localization provides the ability to update translation content 
 
 ------
 
-# ⚙️ How It Works
+# How It Works
 
 The workflow is conceptually similar to SDWebImage.
 
@@ -83,7 +83,7 @@ In short, LangKit follows this strategy:
 
 ------
 
-# 📸 Preview
+# Preview
 
 <p align="center">
   <img src="images/en.png" width="800">
@@ -93,7 +93,7 @@ In short, LangKit follows this strategy:
 
 ------
 
-# 📦 Installation
+# Installation
 
 ```
 pod 'LangKit'
@@ -102,7 +102,7 @@ pod 'LangKit'
 
 ------
 
-# 🚀 Usage
+# Usage
 
 Download the Demo project included in this repository. It contains complete examples and source code demonstrating how to integrate and use LangKit.
 

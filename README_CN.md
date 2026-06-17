@@ -4,7 +4,7 @@
 
 [英文文档](README.md)
 
-# ✨ Explanation — 说明
+# Explanation — 说明
 
 支持国际化(多语言)线上第三方
 
@@ -23,7 +23,7 @@
 1.主要是app有新的页面(功能)开发,就需要有新增的字段,也是需要重新提交审核.(只能解决原有的字段内容更新)
 2.如果从线上下载多语言的字段,为了防止下载失败,通常都会在项目放入一份多语言的json文件进行备份.而且要跟线上的保持一致.如果是这样的话,线上的那份就多此一举了.本地本身有一份跟线上的一模一样,就没有必要从网上拿,如果本地不备份存在安全隐患,万一接口访问失败,整个app有很大的影响
 
-# ⚙️ How It Works -- 工作原理
+# How It Works -- 工作原理
 
 原理类似于SDWebimage
 
@@ -64,20 +64,20 @@
 
 
 
-# 📸 Preview — 预览
+# Preview — 预览
 
 <p align="center">
   <img src="images/cn.png" width="800">
 </p>
 
 
-# 📦 Installation -- 安装
+# Installation -- 安装
 
 ```ruby
 pod 'LangKit'
 ```
 
-# 🚀 Usage — 使用
+# Usage — 使用
 
 直接下载Demol,Demol包含使用方法和第三方的代码，可以直接运行
 
